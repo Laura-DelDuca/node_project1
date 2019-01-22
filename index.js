@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 //https://docs.npmjs.com/files/package.json
-//Info pour "bin"
+// understanding "bin"
 
 //https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
+// link index.js and package.json
 
 var validator = require("email-validator");
 var axios = require('axios');
@@ -26,19 +27,19 @@ console.log(chalk.green.bold( figlet.textSync('Hello Friend', {
     verticalLayout: 'fitted'
 })));
 
-// This also works: 
-// figlet("Hello Friend", function(err, data) {
-//     if (err) {
-//         console.log('Something went wrong...');
-//         console.dir(err);
-//         return;
-//     }
-//     console.log(data)
+    // Figlet : this also works: 
+    // figlet("Hello Friend", function(err, data) {
+    //     if (err) {
+    //         console.log('Something went wrong...');
+    //         console.dir(err);
+    //         return;
+    //     }
+    //     console.log(data)
 
-// });
+    // });
 
 
-    // Just to check if it worked... And it did. 
+    // First test: 
     // var test = validator.validate("leny@test.com");
     // console.log (test);
     // if (test = true){
@@ -50,9 +51,11 @@ console.log(chalk.green.bold( figlet.textSync('Hello Friend', {
     // }
 
 //https://nodejs.org/api/process.html#process_process_argv
-// retrieve the second argument within the console's line - address entered by the user
+// how to retrieve input from the console
+
 let address = process.argv[2];
 console.log(chalk.blue('You entered:') + address);
+    // Second test with the input:
     //var test = validator.validate(address);
     // console.log (test);
     // if (test) {
@@ -65,6 +68,7 @@ console.log(chalk.blue('You entered:') + address);
 if (validator.validate (address)) {
     spinner.start();
     //https://www.npmjs.com/package/axios
+    // about axios
     axios ({
         method: "get",
         baseURL: 'https://haveibeenpwned.com/api/v2/breachedaccount/' + address,
@@ -77,10 +81,9 @@ if (validator.validate (address)) {
         spinner.stop();
         console.log(address + (chalk.red.bold(' has been compromised. Breaches you were pwned in :' )));
         response.data.forEach(element => {
-            //ajout de {} parce qu'il y a maintenant plusieurs console.log
+            // needs {} because of the several "console.log"
             console.log (chalk.red(element.Name));
             console.log (chalk.red (element.Title));
-            //console.log (element.Domain);
         });
     })
 
