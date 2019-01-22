@@ -1,32 +1,33 @@
-#CheckMe
+# CheckMe
 
 Has your account been compromised? Check this out with checkMe ! 
 
-checkMe queries haveibeenpwned's database and informs you about security breaches associated with your email address. 
+checkMe queries Have I Been Pwned's database and informs you about security breaches associated with your email address. 
 
-##Installation
+## Installation
 
 
 
-##How to use
+## How to use
 
-Installation completed? Good. You can now check your email address in your console. Simply type:
+Installation completed? Good. You can now check your email address in your console. Simply enter:
 
 checkMe test@test.com
 
-Of course you have to replace the example with the address you want to check.
+Of course you have to replace the example above with the address you want to check.
 
 
-##Dependencies
+## Dependencies
 
 CheckMe would be nothing without: 
 
 + [email-validator](https://www.npmjs.com/package/email-validator) : validates email adresses (no kidding...)
-+ Have I Been Pwned's [API] (https://haveibeenpwned.com/)
-+ [axios] (https://www.npmjs.com/package/axios) : contacts that API
++ Have I Been Pwned's [API](https://haveibeenpwned.com/)
++ [axios](https://www.npmjs.com/package/axios) : contacts that API
 
 And has been customized with:
 
-+ ora : for the spinner
-+ chalk : for the colors
-+ figlet : for the spinner
++ [ora](https://www.npmjs.com/package/ora) : for the spinner
++ [chalk](https://www.npmjs.com/package/chalk) : for the colors
++ [figlet](https://www.npmjs.com/package/figlet) : for the spinner
+
