@@ -1,11 +1,44 @@
 #!/usr/bin/env node
+//https://docs.npmjs.com/files/package.json
+//Info pour "bin"
 
 //https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
 
 var validator = require("email-validator");
-var axios = require('axios')
+var axios = require('axios');
+const ora = require('ora');
+const spinner = ora ({
+    text: 'Currently checking your account',
+    spinner: {
+        interval: 150, 
+            //https://github.com/sindresorhus/cli-spinners/blob/master/spinners.json
+            frames:  [
+                    "⊶",
+                    "⊷"
+                     ]
+    },
+});
+const chalk = require('chalk');
+const figlet = require('figlet');
+console.log(chalk.green.bold( figlet.textSync('Hello Friend', {
+    font: 'Standard',
+    horizontalLayout: 'fitted',
+    verticalLayout: 'fitted'
+})));
 
-    //Just to check if it worked... And it did. 
+// This also works: 
+// figlet("Hello Friend", function(err, data) {
+//     if (err) {
+//         console.log('Something went wrong...');
+//         console.dir(err);
+//         return;
+//     }
+//     console.log(data)
+
+// });
+
+
+    // Just to check if it worked... And it did. 
     // var test = validator.validate("leny@test.com");
     // console.log (test);
     // if (test = true){
@@ -19,7 +52,7 @@ var axios = require('axios')
 //https://nodejs.org/api/process.html#process_process_argv
 // retrieve the second argument within the console's line - address entered by the user
 let address = process.argv[2];
-console.log('You entered:' + address);
+console.log(chalk.blue('You entered:') + address);
     //var test = validator.validate(address);
     // console.log (test);
     // if (test) {
@@ -30,6 +63,7 @@ console.log('You entered:' + address);
     // }
 
 if (validator.validate (address)) {
+    spinner.start();
     //https://www.npmjs.com/package/axios
     axios ({
         method: "get",
@@ -40,16 +74,20 @@ if (validator.validate (address)) {
     })
 
     .then(function (response){
-        console.log(address + 'has problems! :' );
-        response.data.forEach(element => 
-            console.log (element.Name)
-
-            );
+        spinner.stop();
+        console.log(address + (chalk.red.bold(' has been compromised. Breaches you were pwned in :' )));
+        response.data.forEach(element => {
+            //ajout de {} parce qu'il y a maintenant plusieurs console.log
+            console.log (chalk.red(element.Name));
+            console.log (chalk.red (element.Title));
+            //console.log (element.Domain);
+        });
     })
 
     .catch (function (error){
+        spinner.stop();
         if ( error.response.status === 404 ) {
-            console.log(address + ' is okay!');
+            console.log(address + (chalk.green.bold (' is safe!')));
         }
         else {
             console.log(error);
@@ -57,16 +95,11 @@ if (validator.validate (address)) {
     });
 }
 else {
-    console.log (address + 'is incorrect');
+    spinner.stop();
+    console.log (address + ' ' + (chalk.white.bgRed.bold('is not a correct email address')));
 }
 
     
 
 
-
-
-
-
-//https://docs.npmjs.com/files/package.json
-//Info pour "bin"
 

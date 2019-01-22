@@ -18,9 +18,12 @@
   "homepage": "https://github.com/Laura-DelDuca/node_project1#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "email-validator": "^2.0.4"
+    "email-validator": "^2.0.4",
+    "chalk": "^2.4.2",
+    "ora": "^3.0.0",
+    "figlet": "^1.2.1"
   },
   "bin": {
-    "tester": "./index.js"
+    "checkMe": "./index.js"
   }
 }
