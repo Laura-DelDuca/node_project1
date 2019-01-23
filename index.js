@@ -73,7 +73,7 @@ if (validator.validate (address)) {
         method: "get",
         baseURL: 'https://haveibeenpwned.com/api/v2/breachedaccount/' + address,
         headers: {
-            'User-Agent' : 'node_project1'
+            'User-Agent' : 'request'
         },
     })
 

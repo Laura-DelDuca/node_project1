@@ -6,7 +6,7 @@ checkMe queries Have I Been Pwned's database and informs you about security brea
 
 ## Installation
 
-
+npm i @lauradelduca1990/checkme
 
 ## How to use
 
