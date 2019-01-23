@@ -29,5 +29,5 @@ And has been customized with:
 
 + [ora](https://www.npmjs.com/package/ora) : for the spinner
 + [chalk](https://www.npmjs.com/package/chalk) : for the colors
-+ [figlet](https://www.npmjs.com/package/figlet) : for the spinner
++ [figlet](https://www.npmjs.com/package/figlet) : for the banner
 
